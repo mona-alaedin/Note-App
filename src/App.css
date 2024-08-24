@@ -11,11 +11,10 @@ body {
 }
 
 .container {
-  padding: 0 2rem;
+  padding: 0 2.5rem;
 }
 
 .note-header {
-  /* background-color: chartreuse; */
   padding: 1rem 0;
   display: flex;
   align-items: center;
@@ -106,6 +105,7 @@ select {
 .note-item__header {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   padding-bottom: 1rem;
   border-bottom: 1px solid #b0b0b0;
 }
@@ -182,4 +182,78 @@ select {
   font-size: 22px;
   font-weight: bolder;
   color: red;
+}
+
+
+/* responsive */
+@media screen and (max-width: 780px) {
+  .container {
+    padding: 0 2rem;
+  }
+
+  select {
+    padding: 0.5rem;
+    font-size: 16px;
+    width: 10rem;
+  }
+
+  .note-app {
+    margin: 0.5rem 0;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* gap: 0 5rem; */
+  }
+
+  .title {
+    font-size: 1.3rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .note-form {
+    width: 100%;
+  }
+
+  .add-new-note {
+    width: 100%;
+  }
+
+  .text-field {
+    padding: 0.8rem;
+    font-size: 18px;
+  }
+
+  .btn--primary {
+    padding: 0.8rem;
+  }
+
+  .note-status {
+    margin-top: 2rem;
+    font-size: 14px;
+    padding: 0;
+    width: 100%;
+  }
+
+  .notes {
+    width: 100%;
+  }
+
+  .note-status span {
+    padding: 3px 5px;
+  }
+
+  .note-item {
+    background-color: #ffffff;
+    border-radius: 15px;
+    padding: 0.5rem;
+  }
+
+  .note-item__header .title {
+    margin-top: 0.5rem;
+    font-size: 20px;
+  }
+
+  .note-item__header .desc {
+    font-size: 18px;
+  }
 }
