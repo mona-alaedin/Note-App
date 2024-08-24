@@ -1,6 +1,9 @@
 import { FaTrash } from "react-icons/fa";
+import { UseNotes, UseNotesDispatch } from "../context/NotesContext";
 
-function NoteList({ notes, onDelete, onComplete, sortBy }) {
+function NoteList({ sortBy }) {
+  const notes = UseNotes();
+
   let sortedNotes = notes;
   if (sortBy === "earliest")
     sortedNotes = [...notes].sort(
@@ -14,14 +17,7 @@ function NoteList({ notes, onDelete, onComplete, sortBy }) {
   return (
     <div className="note-list">
       {sortedNotes.map((note) => {
-        return (
-          <NoteItem
-            key={note.id}
-            note={note}
-            onDelete={onDelete}
-            onComplete={onComplete}
-          />
-        );
+        return <NoteItem key={note.id} note={note} />;
       })}
     </div>
   );
@@ -29,7 +25,8 @@ function NoteList({ notes, onDelete, onComplete, sortBy }) {
 
 export default NoteList;
 
-function NoteItem({ note, onDelete, onComplete }) {
+function NoteItem({ note }) {
+  const dispatch = UseNotesDispatch();
   const options = {
     year: "numeric",
     month: "long",
@@ -44,11 +41,17 @@ function NoteItem({ note, onDelete, onComplete }) {
           <p className="desc">{note.description}</p>
         </div>
         <div className="actions">
-          <FaTrash className="icon" onClick={() => onDelete(note.id)} />
+          <FaTrash
+            className="icon"
+            onClick={() => dispatch({ type: "DELETE-NOTE", payload: note.id })}
+          />
           <input
             type="checkbox"
             value={note.id}
-            onChange={onComplete}
+            onChange={(e) => {
+              const noteId = Number(e.target.value);
+              dispatch({ type: "COMPLETE-NOTE", payload: noteId });
+            }}
             checked={note.completed}
           />
         </div>
